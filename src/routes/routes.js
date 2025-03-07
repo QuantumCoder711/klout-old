@@ -42,6 +42,7 @@ import SendWhatsappAttendee from "../layouts/admin/SendWhatsappAttendee";
 import SendSamedayinvitationAttendee from "../layouts/admin/SendSamedayinvitationAttendee";
 import CheckInForm from "../components/CheckInForm";
 import WhatsappReport from "../layouts/admin/WhatsappReport";
+import App_Event_Page from "../app_event_page";
 
 const routes = [
   { path: "/admin", exact: true, name: "Admin", component: Dashboard },
@@ -65,6 +66,12 @@ const routes = [
     name: "AllEvent",
     component: AllEvent,
   },
+  // {
+  //   path: "/events/:eventuuid_userid",
+  //   exact: true,
+  //   name: "App_Event_Page",
+  //   component: App_Event_Page,
+  // },
   {
     path: "/organiser/admin/view-event/:id",
     exact: true,

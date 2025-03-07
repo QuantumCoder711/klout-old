@@ -9,7 +9,7 @@ import QrCode from "./../assets/img/onelinkto_r3fzb9.png";
 
 // import Logo from "./../assets/img/Klout-Club.svg";
 
-import Logo from "./../assets/img/Klout-Club-whitelogo.png";
+import Logo from "./../assets/images/new_logo.png";
 
 import loadingGif from "../assets/images/load.gif";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
@@ -327,7 +327,7 @@ const Home2 = () => {
             <div className="col-lg-2 col-md-3 col-6">
               <div className="logo">
                 <a href="#home">
-                  <img src={Logo} alt="logo" style={{ height: "28px" }} />
+                  <img src={Logo} alt="logo" />
                 </a>
               </div>
             </div>
@@ -371,6 +371,16 @@ const Home2 = () => {
                       <li>
                         <a
                           className="nav-link"
+                          href="https://organiser.klout.club"
+                          role="menuitem"
+                          tabIndex="-1"
+                        >
+                          Events
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="nav-link"
                           href="#feature"
                           role="menuitem"
                           tabIndex="-1"
@@ -389,14 +399,14 @@ const Home2 = () => {
                         </a>
                       </li>
                       <li>
-                        <Link
+                        <a
                           className="appao-btn"
-                          to="/login"
+                          href="https://organiser.klout.club"
                           role="menuitem"
                           tabIndex="-1"
                         >
-                          Login Now
-                        </Link>
+                          Organiser Login
+                        </a>
                       </li>
                     </ul>
                   )}
@@ -411,6 +421,11 @@ const Home2 = () => {
                     </a>
                   </li>
                   <li>
+                    <a className="nav-link" href="https://organiser.klout.club">
+                      Events
+                    </a>
+                  </li>
+                  <li>
                     <a className="nav-link" href="#feature">
                       Feature
                     </a>
@@ -421,9 +436,9 @@ const Home2 = () => {
                     </a>
                   </li>
                   <li>
-                    <Link className="appao-btn" to="/login">
-                      Login Now
-                    </Link>
+                    <a className="appao-btn" href="https://organiser.klout.club">
+                      Organiser Login
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -1636,7 +1651,7 @@ const Home2 = () => {
                   </li> */}
                 </ul>
                 <p>
-                  Copyright &copy; 2024-25 All rights reserved | The Klout Club
+                  Copyright &copy; 2025-26 All rights reserved | The Klout Club
                   is made with &nbsp;
                   <i className="fa fa-heart-o" aria-hidden="true"></i> &nbsp;
                   {/* <a
@@ -1655,6 +1670,10 @@ const Home2 = () => {
                   &nbsp; | &nbsp;
                   <a href="/terms-and-condition" target="_blank">
                     Terms and Conditions
+                  </a>
+                  &nbsp; | &nbsp;
+                  <a href="/cancellation-policy" target="_blank">
+                    Refund Policy
                   </a>
                 </p>
               </div>

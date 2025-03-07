@@ -9,6 +9,7 @@ const CheckInForm = (props) => {
   const queryParams = new URLSearchParams(props.location.search);
   const eventUUID = queryParams.get('eventuuid');
   const tabId = queryParams.get("tabId");
+  const[eventOtp, setEventOtp] = useState("");
   const [event, setEvent] = useState({});
   const [eventTitle, setEventTitle] = useState('');
   const [userID, setUserID] = useState(null);
@@ -21,9 +22,9 @@ const CheckInForm = (props) => {
     company: '',
     otp: '',
     eventName: eventTitle,
-    eventUuid:'',
+    eventUuid: '',
   });
-  const [isVerified, setIsVerified] = useState(false);  
+  const [isVerified, setIsVerified] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [errors, setErrors] = useState({});
   // const [tabId, setTabId] = useState<string>('');
@@ -36,12 +37,13 @@ const CheckInForm = (props) => {
         setUserID(res.data.data.user_id);
         setEventID(res.data.data.id);
         setEventTitle(res.data.data.title);
+        setEventOtp(res.data.data.event_otp);
       }
     });
   }, [eventUUID]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, eventUuid:eventUUID , eventName: eventTitle , [e.target.name]: e.target.value });
+    setFormData({ ...formData, eventUuid: eventUUID, eventName: eventTitle, [e.target.name]: e.target.value });
   };
 
   const validate = () => {
@@ -64,14 +66,14 @@ const CheckInForm = (props) => {
   // Send OTP function
   const sendOtp = () => {
     if (formData.mobile.length === 10) {
-      axios.post('https://app.klout.club/api/organiser/v1/event-checkin/send-otp', { mobileNumber: formData.mobile*1 } , {
+      axios.post('https://app.klout.club/api/organiser/v1/event-checkin/send-otp', { mobileNumber: formData.mobile * 1 }, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
         .then((res) => {
           if (res.data.status) {
-            setOtpSent(true); 
+            setOtpSent(true);
           }
         });
     } else {
@@ -83,21 +85,22 @@ const CheckInForm = (props) => {
   const verifyOtp = (e) => {
     e.preventDefault();
     if (formData.otp) {
-      axios.post('https://app.klout.club/api/organiser/v1/event-checkin/verify-otp', { mobileNumber: formData.mobile, otp: formData.otp }, {
+      axios.post('https://app.klout.club/api/organiser/v1/event-checkin/verify-otp', { mobileNumber: formData.mobile, otp: formData.otp, eventOtp }, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
         .then((res) => {
-          if (res.data.data) {
+          // if (res.data.data) {
+          if (res.data.status) {
             setIsVerified(true);
-            axios.post('https://app.klout.club/api/organiser/v1/event-checkin/existing-user', { mobile: formData.mobile*1, eventID, userID }, {
+            axios.post('https://app.klout.club/api/organiser/v1/event-checkin/existing-user', { mobile: formData.mobile * 1, eventID, userID }, {
               headers: {
                 'Content-Type': 'application/json'
               }
             }).then(res => {
-              if(res.data.data.length > 0){
-                setFormData({ ...formData , name: res.data.data[0].name, email: res.data.data[0].email, designation: res.data.data[0].designation, company: res.data.data[0].company })
+              if (res.data.data.length > 0) {
+                setFormData({ ...formData, name: res.data.data[0].name, email: res.data.data[0].email, designation: res.data.data[0].designation, company: res.data.data[0].company })
               }
             })
 
@@ -110,7 +113,7 @@ const CheckInForm = (props) => {
   };
 
   function getFirstName(fullName) {
-    const nameParts = fullName.trim().split(' ');  
+    const nameParts = fullName.trim().split(' ');
     return nameParts[0];
   }
 
@@ -128,7 +131,7 @@ const CheckInForm = (props) => {
         }
       }).then((res) => {
         if (res.data.status === true) {
-          axios.post('https://api.klout.club/api/accept_decline_event_invitation', { 
+          axios.post('https://api.klout.club/api/accept_decline_event_invitation', {
             user_id: userID,
             tab_id: tabId,
             event_uuid: eventUUID,
@@ -140,16 +143,16 @@ const CheckInForm = (props) => {
             job_title: formData.designation,
             company_name: formData.company,
             industry: 'Others'
-           }, {
-            headers:{
+          }, {
+            headers: {
               'Content-Type': 'application/json'
             }
           }).then(res => {
-            if(res.data.status === 200){
+            if (res.data.status === 200) {
               history.push('/success');
             }
           })
-          
+
         }
       });
     }
@@ -163,12 +166,12 @@ const CheckInForm = (props) => {
       minHeight: "100vh" // Ensures the background covers the full height of the viewport
     }}>
       <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8 col-sm-10" style={{marginTop: "80px"}}>
+        <div className="col-lg-6 col-md-8 col-sm-10" style={{ marginTop: "80px" }}>
           <div className="card shadow">
             <div className="card-body p-3" style={{ backgroundColor: '#ecf0f1' }}>
               <h2 className="text-center mb-4" style={{ color: '#333' }}>Registration for <u>{event.title}</u></h2>
               <p className="mb-4">Thank you for your interest in attending the {event.title}. Please fill the detail below to check in at the {event.title}</p>
-              
+
               {!otpSent && (
                 <div>
                   {/* Mobile Input and OTP Button */}
@@ -208,7 +211,7 @@ const CheckInForm = (props) => {
                     {errors.otp && <div className="invalid-feedback">{errors.otp}</div>}
                   </div>
                   <button type="button" className="btn btn-primary w-100 btnColor" onClick={verifyOtp}>
-                  {/* <button type="button" className="btn btn-primary w-100"> */}
+                    {/* <button type="button" className="btn btn-primary w-100"> */}
 
                     Verify OTP
                   </button>

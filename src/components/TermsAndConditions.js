@@ -511,7 +511,7 @@ const TermsAndConditions = () => {
                   </li>
                 </ul>
                 <p>
-                  Copyright &copy; 2023-24 All rights reserved | The Klout Club
+                  Copyright &copy; 2025-26 All rights reserved | The Klout Club
                   is made with &nbsp;
                   <i class="fa fa-heart-o" aria-hidden="true"></i> by &nbsp;
                   <a href="https://insightner.com/" target="_blank">
@@ -526,6 +526,10 @@ const TermsAndConditions = () => {
                   &nbsp; | &nbsp;
                   <a href="/terms-and-condition" target="_blank">
                     Terms and Conditions
+                  </a>
+                  &nbsp; | &nbsp;
+                  <a href="/cancellation-policy" target="_blank">
+                    Refund Policy
                   </a>
                 </p>
               </div>

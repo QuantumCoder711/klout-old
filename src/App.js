@@ -30,6 +30,8 @@ import store from "./store";
 import CheckInForm from "./components/CheckInForm";
 import SuccessPage from "./components/SuccessPage";
 import OtpVerification from "./components/OtpVerification";
+import RefundPolicy from "./components/RefundPolicy";
+import App_Event_Page from "./app_event_page";
 
 axios.defaults.baseURL = "https://api.klout.club/";
 
@@ -61,6 +63,7 @@ function App() {
           <Route exact path="/" component={LandingHome} />
           {/* <Route exact path="/" component={SuccessPage} /> */}
           <Route exact path="/event/check-in" component={CheckInForm} />
+          <Route path="/events/:attendeeuuid_eventid_userid" component={App_Event_Page} />
           <Route path="/success" component={SuccessPage} />
 
           <Route path="/login" component={Login} />
@@ -71,6 +74,7 @@ function App() {
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/reset-password" component={ResetPassword} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/cancellation-policy" component={RefundPolicy} />
           <Route path="/terms-and-condition" component={TermsAndConditions} />
           <Route path="/unsubscribe" component={UnSubscribe} />
           <Route path="/403" component={Page403} />
