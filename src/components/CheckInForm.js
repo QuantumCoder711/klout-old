@@ -94,7 +94,17 @@ const CheckInForm = (props) => {
           // if (res.data.data) {
           if (res.data.status) {
             setIsVerified(true);
-            axios.post('https://app.klout.club/api/organiser/v1/event-checkin/existing-user', { mobile: formData.mobile * 1, eventID, userID }, {
+            axios.post('https://api.klout.club/api/request_event_invitation', { 
+              event_uuid: eventUUID,
+              first_name: getFirstName(formData.name),
+              last_name: getLastName(formData.name), 
+              email_id: formData.email,
+              phone_number: formData.mobile,
+              job_title: formData.designation,
+              company_name: formData.company,
+              industry: 'Others',
+              acceptance: '1'
+            }, {
               headers: {
                 'Content-Type': 'application/json'
               }

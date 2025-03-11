@@ -99,6 +99,28 @@ const Home2 = () => {
     }));
   };
 
+  useEffect(() => {
+    // Set page metadata
+    const metadata = {
+      title: "Klout Club - Smart Event Management & Thought Leadership Networking",
+      description: "Klout Club is India's leading event management platform for corporate events. Enable QR check-ins, AI-powered networking, and real-time attendee insights. Connect with top professionals and check your Thought Leadership Score to enhance your influence.",
+      ogTitle: "Klout Club - Smart Event Management & Thought Leadership Networking"
+    };
+
+    document.title = metadata.title;
+    
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+    const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+
+    if (descriptionMeta) {
+      descriptionMeta.setAttribute('content', metadata.description);
+    }
+
+    if (ogTitleMeta) {
+      ogTitleMeta.setAttribute('content', metadata.ogTitle);
+    }
+  }, []);
+
   const handleInputFocus = (e) => {
     const { name, value } = e.target;
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
@@ -401,7 +423,7 @@ const Home2 = () => {
                       <li>
                         <a
                           className="appao-btn"
-                          href="https://organiser.klout.club"
+                          href="https://organiser.klout.club/login"
                           role="menuitem"
                           tabIndex="-1"
                         >
@@ -436,7 +458,7 @@ const Home2 = () => {
                     </a>
                   </li>
                   <li>
-                    <a className="appao-btn" href="https://organiser.klout.club">
+                    <a className="appao-btn" href="https://organiser.klout.club/login">
                       Organiser Login
                     </a>
                   </li>
@@ -608,9 +630,8 @@ const Home2 = () => {
                       </h1>
                       {/* {isHoveredOne && ( */}
                       <p
-                        className={`paragraph ${
-                          isHoveredOne ? "visible" : "hide"
-                        }`}
+                        className={`paragraph ${isHoveredOne ? "visible" : "hide"
+                          }`}
                       >
                         Seamlessly integrate targeted strategies and insights,
                         empowering your business to thrive in acquiring fresh,
@@ -657,9 +678,8 @@ const Home2 = () => {
                       </h1>
                       {/* {isHoveredTwo && ( */}
                       <p
-                        className={`paragraph ${
-                          isHoveredTwo ? "visible" : "hide"
-                        }`}
+                        className={`paragraph ${isHoveredTwo ? "visible" : "hide"
+                          }`}
                       >
                         Cultivate a community that fosters collaboration,
                         knowledge exchange, and lasting relationships within
@@ -706,9 +726,8 @@ const Home2 = () => {
                       </h1>
                       {/* {isHoveredThree && ( */}
                       <p
-                        className={`paragraph ${
-                          isHoveredThree ? "visible" : "hide"
-                        }`}
+                        className={`paragraph ${isHoveredThree ? "visible" : "hide"
+                          }`}
                       >
                         Unlock valuable networking opportunities, fostering
                         meaningful connections and collaborations right in your
@@ -761,9 +780,8 @@ const Home2 = () => {
                       </h1>
                       {/* {isHoveredFour && ( */}
                       <p
-                        className={`paragraph ${
-                          isHoveredFour ? "visible" : "hide"
-                        }`}
+                        className={`paragraph ${isHoveredFour ? "visible" : "hide"
+                          }`}
                       >
                         Elevate your entrepreneurial journey by building a
                         synergistic partnership that propels your business to
@@ -810,9 +828,8 @@ const Home2 = () => {
                       </h1>
                       {isHoveredFive && (
                         <p
-                          className={`paragraph ${
-                            isHoveredFive ? "visible" : "hide"
-                          }`}
+                          className={`paragraph ${isHoveredFive ? "visible" : "hide"
+                            }`}
                         >
                           Cultivate mentorship relationships that foster career
                           development ensuring a path to success with trusted
@@ -1389,9 +1406,8 @@ const Home2 = () => {
                   <div className="form-group">
                     <input
                       type="text"
-                      className={`form-control form-control-user ${
-                        errors.name ? "is-invalid" : ""
-                      }`}
+                      className={`form-control form-control-user ${errors.name ? "is-invalid" : ""
+                        }`}
                       placeholder="Name"
                       name="name"
                       value={formData.name}
@@ -1417,9 +1433,8 @@ const Home2 = () => {
                   <div className="form-group">
                     <input
                       type="email"
-                      className={`form-control form-control-user ${
-                        errors.email ? "is-invalid" : ""
-                      }`}
+                      className={`form-control form-control-user ${errors.email ? "is-invalid" : ""
+                        }`}
                       placeholder="Email Address"
                       name="email"
                       value={formData.email}
@@ -1440,9 +1455,8 @@ const Home2 = () => {
                   <div className="form-group">
                     <input
                       type="text"
-                      className={`form-control form-control-user ${
-                        errors.phone ? "is-invalid" : ""
-                      }`}
+                      className={`form-control form-control-user ${errors.phone ? "is-invalid" : ""
+                        }`}
                       placeholder="Phone Number"
                       name="phone"
                       maxLength={10}
@@ -1465,9 +1479,8 @@ const Home2 = () => {
                   <div className="form-group">
                     <input
                       type="text"
-                      className={`form-control form-control-user ${
-                        errors.subject ? "is-invalid" : ""
-                      }`}
+                      className={`form-control form-control-user ${errors.subject ? "is-invalid" : ""
+                        }`}
                       placeholder="Subject"
                       name="subject"
                       value={formData.subject}
@@ -1494,9 +1507,8 @@ const Home2 = () => {
                     <textarea
                       placeholder="Your Message"
                       name="message"
-                      className={`form-control form-control-user ${
-                        errors.message ? "is-invalid" : ""
-                      }`}
+                      className={`form-control form-control-user ${errors.message ? "is-invalid" : ""
+                        }`}
                       rows={1}
                       value={formData.message}
                       onChange={handleInput}
